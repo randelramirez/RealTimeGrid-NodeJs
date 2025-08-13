@@ -4,6 +4,8 @@ This project is a Node.js/Express + Socket.IO implementation of the original [Re
 
 This is a Node.js/Express implementation of a real-time collaborative employee grid using Socket.IO for real-time communication and SQLite for data storage.
 
+> **Note**: The original [RealtimeGrid](https://github.com/randelramirez/RealtimeGrid) was built with ASP.NET Core, SignalR, and Entity Framework. This Node.js version provides the same functionality using JavaScript/TypeScript ecosystem equivalents.
+
 ## Architecture
 
 ### Backend (Node.js/Express)
