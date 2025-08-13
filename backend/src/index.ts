@@ -9,6 +9,7 @@ import path from 'path';
 import { EmployeeSocketController } from './sockets/EmployeeSocketController.js';
 import { employeesController } from './controllers/EmployeesController.js';
 import employeesRouter from './routes/employees.js';
+import { db } from './utils/Database.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -74,19 +75,33 @@ const io = new SocketServer(server, {
 const employeeHub = new EmployeeSocketController(io);
 employeesController.setEmployeeHub(employeeHub);
 
-// Start server
-server.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(`📡 Socket.IO server ready for real-time connections`);
-  console.log(`🎯 Accepting connections from: ${CLIENT_ORIGIN}`);
-  console.log(`📊 API endpoints:`);
-  console.log(`   - GET    /api/employees`);
-  console.log(`   - GET    /api/employees/:id`);
-  console.log(`   - POST   /api/employees`);
-  console.log(`   - PUT    /api/employees/:id`);
-  console.log(`   - DELETE /api/employees/:id`);
-  console.log(`   - GET    /health`);
-});
+// Initialize database and start server
+async function startServer() {
+  try {
+    console.log('🗄️  Initializing database...');
+    await db.initializeDatabase();
+    console.log('✅ Database initialized and seeded successfully');
+    
+    // Start server
+    server.listen(PORT, () => {
+      console.log(`🚀 Server running on http://localhost:${PORT}`);
+      console.log(`📡 Socket.IO server ready for real-time connections`);
+      console.log(`🎯 Accepting connections from: ${CLIENT_ORIGIN}`);
+      console.log(`📊 API endpoints:`);
+      console.log(`   - GET    /api/employees`);
+      console.log(`   - GET    /api/employees/:id`);
+      console.log(`   - POST   /api/employees`);
+      console.log(`   - PUT    /api/employees/:id`);
+      console.log(`   - DELETE /api/employees/:id`);
+      console.log(`   - GET    /health`);
+    });
+  } catch (error) {
+    console.error('❌ Failed to initialize database:', error);
+    process.exit(1);
+  }
+}
+
+startServer();
 
 // Graceful shutdown
 process.on('SIGTERM', () => {

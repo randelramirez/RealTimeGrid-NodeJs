@@ -1,5 +1,5 @@
 import { Server as SocketServer, Socket } from 'socket.io';
-import { db } from '../database/Database.js';
+import { db } from '../utils/Database.js';
 
 // In-memory storage for locked employees (employeeId -> socketId)
 const lockedEmployees = new Map<number, string>();

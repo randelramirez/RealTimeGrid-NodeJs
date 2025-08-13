@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { db } from '../database/Database.js';
+import { db } from '../utils/Database.js';
 import { CreateEmployeeRequest, UpdateEmployeeRequest } from '../models/Employee.js';
 import { EmployeeSocketController } from '../sockets/EmployeeSocketController.js';
 
