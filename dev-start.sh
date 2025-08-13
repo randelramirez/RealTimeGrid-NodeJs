@@ -11,6 +11,10 @@ cleanup() {
     echo ""
     echo "🛑 Shutting down development servers..."
     kill $(jobs -p) 2>/dev/null
+    
+    # Navigate back to root directory
+    cd "$(dirname "$0")"
+    
     exit 0
 }
 
@@ -68,3 +72,6 @@ echo "Press Ctrl+C to stop both servers"
 
 # Wait for background processes
 wait
+
+# Navigate back to root directory
+cd "$(dirname "$0")"

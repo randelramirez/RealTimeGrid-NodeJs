@@ -1,5 +1,7 @@
 # Real-time Employee Grid - Node.js Implementation
 
+This project is a Node.js/Express + Socket.IO implementation of the original [RealtimeGrid](https://github.com/randelramirez/RealtimeGrid) repository.
+
 This is a Node.js/Express implementation of a real-time collaborative employee grid using Socket.IO for real-time communication and SQLite for data storage.
 
 ## Architecture

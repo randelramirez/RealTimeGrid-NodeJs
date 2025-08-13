@@ -106,6 +106,9 @@ try {
     # Cleanup jobs
     Get-Job | Stop-Job
     Get-Job | Remove-Job
+    
+    # Navigate back to root directory
+    Set-Location $rootDir
 }
 
 Write-Host "🛑 Development servers stopped." -ForegroundColor Yellow
